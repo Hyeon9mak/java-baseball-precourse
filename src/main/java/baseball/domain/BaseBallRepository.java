@@ -25,8 +25,9 @@ public class BaseBallRepository {
     }
 
     private void validateDuplicate(List<BaseBall> baseBalls) {
-        Set<BaseBall> setBaseBalls = new HashSet<>(baseBalls);
-        if (baseBalls.size() != setBaseBalls.size()){
+        Set<Integer> setBaseBalls = new HashSet<>();
+        baseBalls.stream().forEach(baseBall -> setBaseBalls.add(baseBall.getNumber()));
+        if (baseBalls.size() != setBaseBalls.size()) {
             throw new IllegalArgumentException("중복된 정수가 존재합니다.");
         }
     }
