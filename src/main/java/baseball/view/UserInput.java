@@ -10,7 +10,7 @@ public class UserInput {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String getInputNumbers() {
-        System.out.println(REQUEST_INPUT_NUMBERS_MESSAGE);
+        System.out.print(REQUEST_INPUT_NUMBERS_MESSAGE);
         return scanner.nextLine();
     }
     

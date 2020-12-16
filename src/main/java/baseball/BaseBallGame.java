@@ -4,6 +4,7 @@ import baseball.domain.BaseBallRepository;
 import baseball.domain.ScoreBoard;
 import baseball.service.ComputerService;
 import baseball.service.UserService;
+import baseball.view.GameDiplay;
 
 public class BaseBallGame {
 
@@ -30,6 +31,7 @@ public class BaseBallGame {
         while (!scoreBoard.isThreeStrike()) {
             BaseBallRepository userBalls = UserService.makeUserBalls();
             scoreBoard.compare(computerBalls, userBalls);
+            GameDiplay.printResult(scoreBoard.getGameResult());
         }
     }
 }
