@@ -1,17 +1,13 @@
 package baseball;
 
-import baseball.domain.BaseBall;
 import baseball.domain.BaseBallRepository;
-import baseball.view.UserInput;
-import java.util.HashSet;
-import java.util.Set;
+import baseball.service.ComputerService;
+import baseball.service.UserService;
 
 public class BaseBallGame {
 
     private static final String GAME_CONTINUE = "1";
     private static final String GAME_END = "2";
-    private static final int THREE_BALL = 3;
-    private static final String COMMA = ",";
 
     private BaseBallGame() {
     }
@@ -28,25 +24,9 @@ public class BaseBallGame {
     }
 
     private void runningGame() {
-        BaseBallRepository computerBalls = BaseBallRepository
-            .newBaseBallRepository(initRandomBaseBalls());
-        BaseBallRepository userBalls = BaseBallRepository
-            .newBaseBallRepository(convertUserBalls(UserInput.getInputNumbers()));
-    }
+        BaseBallRepository computerBalls = ComputerService.initComputerBalls();
+        BaseBallRepository userBalls = UserService.makeUserBalls();
 
-    private Set<BaseBall> convertUserBalls(String inputNumbers) {
-        Set<BaseBall> baseBalls = new HashSet<>();
-        for(String number : inputNumbers.split(COMMA)){
-            baseBalls.add(BaseBall.newUserBaseBall(number));
-        }
-        return baseBalls;
-    }
 
-    private Set<BaseBall> initRandomBaseBalls() {
-        Set<BaseBall> baseBalls = new HashSet<>();
-        while (baseBalls.size() < THREE_BALL) {
-            baseBalls.add(BaseBall.newRandomBaseBall());
-        }
-        return baseBalls;
     }
 }
