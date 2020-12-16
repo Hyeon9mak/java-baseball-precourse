@@ -2,7 +2,9 @@ package baseball.service;
 
 import baseball.domain.BaseBall;
 import baseball.domain.BaseBallRepository;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ComputerService {
@@ -13,11 +15,11 @@ public class ComputerService {
         return BaseBallRepository.newBaseBallRepository(initRandomBaseBalls());
     }
 
-    private static Set<BaseBall> initRandomBaseBalls() {
+    private static List<BaseBall> initRandomBaseBalls() {
         Set<BaseBall> baseBalls = new HashSet<>();
         while (baseBalls.size() < THREE_BALL) {
             baseBalls.add(BaseBall.newRandomBaseBall());
         }
-        return baseBalls;
+        return new ArrayList<>(baseBalls);
     }
 }

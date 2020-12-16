@@ -1,29 +1,39 @@
 package baseball.domain;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class BaseBallRepository {
 
     private static final int BASEBALLS_SIZE = 3;
 
-    private final Set<BaseBall> baseBalls;
+    private final List<BaseBall> baseBalls;
 
-    private BaseBallRepository(Set<BaseBall> baseBalls) {
+    private BaseBallRepository(List<BaseBall> baseBalls) {
+        validateDuplicate(baseBalls);
         validateSize(baseBalls);
         this.baseBalls = baseBalls;
     }
 
-    public static BaseBallRepository newBaseBallRepository(Set<BaseBall> baseBalls) {
+    public static BaseBallRepository newBaseBallRepository(List<BaseBall> baseBalls) {
         return new BaseBallRepository(baseBalls);
     }
 
-    public Set<BaseBall> getBaseBalls(){
+    public List<BaseBall> getBaseBalls() {
         return baseBalls;
     }
 
-    private void validateSize(Set<BaseBall> baseBalls) {
+    private void validateDuplicate(List<BaseBall> baseBalls) {
+        Set<BaseBall> setBaseBalls = new HashSet<>(baseBalls);
+        if (baseBalls.size() != setBaseBalls.size()){
+            throw new IllegalArgumentException("중복된 정수가 존재합니다.");
+        }
+    }
+
+    private void validateSize(List<BaseBall> baseBalls) {
         if (baseBalls.size() != BASEBALLS_SIZE) {
-            throw new IllegalArgumentException("입력된 정수 값이 3개가 아니거나 중복된 정수가 존재합니다.");
+            throw new IllegalArgumentException("입력된 정수 값이 3개가 아닙니다.");
         }
     }
 }

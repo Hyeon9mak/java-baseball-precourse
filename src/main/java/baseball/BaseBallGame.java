@@ -1,6 +1,7 @@
 package baseball;
 
 import baseball.domain.BaseBallRepository;
+import baseball.domain.ScoreBoard;
 import baseball.service.ComputerService;
 import baseball.service.UserService;
 
@@ -24,9 +25,11 @@ public class BaseBallGame {
     }
 
     private void runningGame() {
+        ScoreBoard scoreBoard = ScoreBoard.newScoreBoard();
         BaseBallRepository computerBalls = ComputerService.initComputerBalls();
-        BaseBallRepository userBalls = UserService.makeUserBalls();
-
-
+        while (!scoreBoard.isThreeStrike()) {
+            BaseBallRepository userBalls = UserService.makeUserBalls();
+            scoreBoard.compare(computerBalls, userBalls);
+        }
     }
 }
