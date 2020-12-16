@@ -7,6 +7,7 @@ public class ScoreBoard {
     private static final String NOTHING = "낫싱";
     private static final String WHITE_SPACE = " ";
     private static final int EMPTY = 0;
+    private static final int INITIAL = 0;
     private static final int THREE_STRIKE = 3;
     private static final int COUNT_OF_BALLS = 3;
     private int ball = 0;
@@ -24,17 +25,18 @@ public class ScoreBoard {
     }
 
     public void compare(BaseBallRepository computerBalls, BaseBallRepository userBalls) {
+        initialStrikeBall();
         for (int i = 0; i < COUNT_OF_BALLS; i++) {
             updateScoreBoard(computerBalls, computerBalls.getBaseBalls().get(i),
                 userBalls.getBaseBalls().get(i));
         }
     }
 
-    public String getGameResult(){
+    public String getGameResult() {
         StringBuilder stringBuilder = new StringBuilder();
         makeBallResult(stringBuilder);
         makeStrikeResult(stringBuilder);
-        if(stringBuilder.length() == EMPTY){
+        if (stringBuilder.length() == EMPTY) {
             stringBuilder.append(NOTHING);
         }
         return stringBuilder.toString();
@@ -51,6 +53,11 @@ public class ScoreBoard {
         }
     }
 
+    private void initialStrikeBall() {
+        strike = INITIAL;
+        ball = INITIAL;
+    }
+
     private boolean isStrike(BaseBall computerBall, BaseBall userBall) {
         return computerBall.getNumber() == userBall.getNumber();
     }
@@ -61,7 +68,7 @@ public class ScoreBoard {
     }
 
     private void makeBallResult(StringBuilder stringBuilder) {
-        if (ball > 0){
+        if (ball > 0) {
             stringBuilder.append(ball);
             stringBuilder.append(BALL);
             stringBuilder.append(WHITE_SPACE);
@@ -69,7 +76,7 @@ public class ScoreBoard {
     }
 
     private void makeStrikeResult(StringBuilder stringBuilder) {
-        if (strike > 0){
+        if (strike > 0) {
             stringBuilder.append(strike);
             stringBuilder.append(STRIKE);
         }
