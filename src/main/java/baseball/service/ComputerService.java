@@ -3,9 +3,7 @@ package baseball.service;
 import baseball.domain.BaseBall;
 import baseball.domain.BaseBallRepository;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ComputerService {
 
@@ -16,10 +14,16 @@ public class ComputerService {
     }
 
     private static List<BaseBall> initRandomBaseBalls() {
-        Set<BaseBall> baseBalls = new HashSet<>();
+        List<BaseBall> baseBalls = new ArrayList<>();
         while (baseBalls.size() < THREE_BALL) {
-            baseBalls.add(BaseBall.newRandomBaseBall());
+            insertBaseBall(baseBalls, BaseBall.newRandomBaseBall());
         }
         return new ArrayList<>(baseBalls);
+    }
+
+    private static void insertBaseBall(List<BaseBall> baseBalls, BaseBall ball) {
+        if (!baseBalls.stream().anyMatch(baseBall -> baseBall.getNumber() == ball.getNumber())) {
+            baseBalls.add(ball);
+        }
     }
 }
