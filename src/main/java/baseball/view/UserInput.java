@@ -13,8 +13,8 @@ public class UserInput {
         System.out.print(REQUEST_INPUT_NUMBERS_MESSAGE);
         return scanner.nextLine();
     }
-    
-    public static String getInputContinue(){
+
+    public static String getInputContinue() {
         System.out.println(REQUEST_INPUT_CONTINUE_MESSAGE);
         return scanner.nextLine();
     }
