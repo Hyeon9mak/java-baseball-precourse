@@ -8,7 +8,7 @@ import java.util.List;
 
 public class UserService {
 
-    private static final String COMMA = ",";
+    private static final String EMPTY_BLOCK = "";
 
     public static BaseBallRepository makeUserBalls() {
         return BaseBallRepository
@@ -17,7 +17,7 @@ public class UserService {
 
     private static List<BaseBall> convertUserBalls(String inputNumbers) {
         List<BaseBall> baseBalls = new ArrayList<>();
-        for (String number : inputNumbers.split(COMMA)) {
+        for (String number : inputNumbers.split(EMPTY_BLOCK)) {
             baseBalls.add(BaseBall.newUserBaseBall(number));
         }
         return baseBalls;
