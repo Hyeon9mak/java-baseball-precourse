@@ -45,7 +45,7 @@ public class BaseBallGame {
     }
 
     private void validateGameContinue(String gameContinue) {
-        if (!gameContinue.equals(GAME_CONTINUE) && gameContinue.equals(GAME_END)) {
+        if (!gameContinue.equals(GAME_CONTINUE) && !gameContinue.equals(GAME_END)) {
             throw new IllegalArgumentException("\"1\" 또는 \"2\" 만 입력 할 수 있습니다.");
         }
     }
